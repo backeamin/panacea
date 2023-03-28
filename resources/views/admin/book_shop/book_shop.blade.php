@@ -43,7 +43,7 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$book_shop->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$book_shop->id}}"><i class="fe-edit"></i> Edit</a>
 
                                             <form action="{{route('book_shop.destroy', $book_shop->id)}}" method="post">
                                                 @csrf

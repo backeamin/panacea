@@ -67,33 +67,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <form class="form-horizontal" action="{{route('message.store')}}" method="post">
-                                        @csrf
-                                        <div class="form-group">
-                                            <div class="col-12">
-                                                <label for="name">Name</label>
-                                                <input class="form-control" type="text" name="name" id="name" placeholder="Type your Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-12">
-                                                <label for="email">Email</label>
-                                                <input class="form-control" type="text" name="email" id="email" placeholder="Email Address">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-12">
-                                                <label for="message">Message</label>
-                                                <textarea class="form-control" name="message" id="message" cols="30" placeholder="Type your Message" rows="10"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group account-btn text-center">
-                                            <div class="col-12">
-                                                <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit"><i class="fe-send"></i> Send Message</button>
-                                            </div>
-                                        </div>
+                                <form class="form-horizontal" action="{{route('message.store')}}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input class="form-control" type="text" name="name" id="name" placeholder="Type your Name">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input class="form-control" type="text" name="email" id="email" placeholder="Email Address">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="message">Message</label>
+                                            <textarea class="form-control" name="message" id="message" cols="30" placeholder="Type your Message" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group account-btn text-center">
+                                            <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Send message</button>
+                                    </div>
 
-                                    </form>
+                                </form>
 
                             </div>
                         </div>

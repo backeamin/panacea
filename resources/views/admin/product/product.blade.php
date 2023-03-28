@@ -13,8 +13,7 @@
                             <h4 class="m-0">Product List</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#signup-modal"><i class="fe-plus"></i> New Product</button>
-
+                            <a href="{{route('product.create')}}" class="btn btn-primary"><i class="fe-plus"></i> New Product</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$product->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" href="{{route('product.create')}}?type=edit&id={{$product->id}}"><i class="fe-edit"></i> Edit</a>
 
                                             <form action="{{route('product.destroy', $product->id)}}" method="post">
                                                 @csrf
@@ -143,80 +142,6 @@
                         @endforelse
                     </table>
                 </div>
-                <!-- Signup modal content -->
-                <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="m-0">
-                                    Create a New Product
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="title">Title</label>
-                                            <input class="form-control" type="text" name="title" id="title" placeholder="Product Title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="cover_page">Cover Page</label>
-                                            <input class="form-control" name="cover_page" type="file" id="cover_page">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="writer_id">Writer Id</label>
-                                            <input class="form-control" name="writer_id" type="number" id="writer_id">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="price">Price</label>
-                                            <input class="form-control" type="number" name="price" id="price" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="discount_price">Discount Price</label>
-                                            <input class="form-control" type="number" name="discount_price" id="discount_price" placeholder="Discount Price">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="publishing_year">Publishing Year</label>
-                                            <input class="form-control" type="number" name="publishing_year" id="publishing_year" placeholder="Publishing Year">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="edition">Edition</label>
-                                            <input class="form-control" type="text" name="edition" id="edition" placeholder="Edition">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <label for="details">Product Details</label>
-                                            <textarea name="details" id="details" cols="10" rows="5" placeholder="Product Details" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group account-btn text-center">
-                                        <div class="col-12">
-                                            <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Create Product</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-
-
-        </div><!-- end col -->
+        </div>
     </div>
 @endsection

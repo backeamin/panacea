@@ -8,7 +8,7 @@
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-{{--    <link rel="shortcut icon" href="{{asset('admin')}}/images/favicon.ico">--}}
+    <link rel="shortcut icon" href="{{asset('storage')}}/{{getValueByTitle('favicon')}}">
 
     <!-- App css -->
     <link href="{{asset('admin')}}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -16,6 +16,8 @@
     <link href="{{asset('admin')}}/css/app.min.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+    @yield('css')
 
     <style>
         table tr th,
@@ -378,6 +380,8 @@
 
 <!-- App js -->
 <script src="{{asset('admin')}}/js/app.min.js"></script>
+
+@yield('js')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 

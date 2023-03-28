@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Writer;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -26,9 +29,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if($request->type == 'edit'){
+            $data['product'] = Product::where('id', $request->id)->with('categories')->firstOrFail();
+
+        }
+        $data['request'] = $request;
+        $data['writers'] = Writer::all();
+        $data['categories'] = Category::all();
+        return view('admin.product.create_and_update', $data);
     }
 
     /**
@@ -65,7 +75,7 @@ class ProductController extends Controller
             $publishing_year = $request->publishing_year;
         }
 
-        Product::create([
+        $product = Product::create([
             'title' => $request->title,
             'cover_page' => $cover_page,
             'writer_id' => $request->writer_id,
@@ -75,7 +85,19 @@ class ProductController extends Controller
             'edition' => $request->edition,
             'details' => $request->details,
         ]);
+        if ($request->categories){
+            $product->categories()->syncWithoutDetaching($request->categories);
+        }else{
+            $product->categories()->syncWithoutDetaching([1]);
+        }
+        $slug = Str::slug($request->title);
+        if(Writer::where('slug',$slug)->exists()){
+            $slug .= "-" . $product->id;
+        }
+        $product->slug = $slug;
+        $product->save();
         Toastr::success('Product Created Successfully', 'Success');
+
         return back();
     }
 
@@ -150,6 +172,14 @@ class ProductController extends Controller
             'edition' => $request->edition,
             'details' => $request->details,
         ]);
+        if($request->categories){
+            $product->categories()->detach();
+            $product->categories()->syncWithoutDetaching($request->categories);
+        }else{
+            $product->categories()->detach();
+            $product->categories()->syncWithoutDetaching([1]);
+        }
+
         Toastr::success('Product Updated Successfully', 'Success');
         return back();
     }

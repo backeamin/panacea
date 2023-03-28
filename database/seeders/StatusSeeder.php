@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\status;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder

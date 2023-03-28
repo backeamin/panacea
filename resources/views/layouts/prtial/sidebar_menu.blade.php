@@ -23,10 +23,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('product.index')}}">
+                    <a href="javascript: void(0);">
                         <i class="fe-briefcase"></i>
                         <span> Product </span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('product.index')}}">Product List</a></li>
+                        <li><a href="{{route('product.create')}}">Add Product</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{route('writer.index')}}">
@@ -59,9 +64,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('option.index')}}">
-                        <i class="fe-octagon"></i>
-                        <span> Message </span>
+                    <a href="{{route('options.index')}}">
+                        <i class="fe-settings"></i>
+                        <span> Site Option </span>
                     </a>
                 </li>
 

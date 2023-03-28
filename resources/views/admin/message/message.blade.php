@@ -41,7 +41,7 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$message->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$message->id}}"><i class="fe-edit"></i> Edit</a>
 
                                             <form action="{{route('message.destroy', $message->id)}}" method="post">
                                                 @csrf
@@ -115,30 +115,22 @@
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" action="{{route('message.store')}}" method="post" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="{{route('message.store')}}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="name">Name</label>
                                             <input class="form-control" type="text" name="name" id="name" placeholder="Type your Name">
-                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="email">Email</label>
                                             <input class="form-control" type="text" name="email" id="email" placeholder="Email Address">
-                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="message">Message</label>
                                             <textarea class="form-control" name="message" id="message" cols="30" placeholder="Type your Message" rows="10"></textarea>
-                                        </div>
                                     </div>
                                     <div class="form-group account-btn text-center">
-                                        <div class="col-12">
                                             <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Create message</button>
-                                        </div>
                                     </div>
 
                                 </form>

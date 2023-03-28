@@ -45,7 +45,7 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$writer->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$writer->id}}"><i class="fe-edit"></i> Edit</a>
 
                                             <form action="{{route('writer.destroy', $writer->id)}}" method="post">
                                                 @csrf
@@ -70,41 +70,33 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="name">Writer Name</label>
                                                                 <input class="form-control" type="text" name="name" id="name" value="{{$writer->name}}">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
+                                                                <label for="slug">Slug (Clear the field if want to generate new link)</label>
+                                                                <input class="form-control" type="text" name="slug" id="slug" value="{{$writer->slug}}">
+                                                        </div>
+                                                        <div class="form-group">
                                                                 <label for="profile_picture">Profile Picture (Optional)</label>
                                                                 <br>
-                                                                <img class="mb-1" style="height: 100px" src="{{asset('storage')}}/{{$writer->profile_picture}}" alt="">
+                                                                <img class="mb-1" style="height: 50px" src="{{asset('storage')}}/{{$writer->profile_picture}}" alt="">
                                                                 <input class="form-control" name="profile_picture" type="file" id="icon">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="designation">Designation</label>
                                                                 <input class="form-control" type="text" name="designation" id="designation" value="{{$writer->designation}}">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="description">Description (Optional)</label>
                                                                 <textarea class="form-control" name="description" id="description" cols="10" rows="3">{{$writer->description}}</textarea>
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="writer_speech">Writer Speech (Optional)</label>
                                                                 <textarea class="form-control" type="text" name="writer_speech" id="writer_speech" cols="10" rows="3">{{$writer->writer_speech}}</textarea>
-                                                            </div>
                                                         </div>
                                                         <div class="form-group account-btn text-center">
-                                                            <div class="col-12">
                                                                 <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Update Writer</button>
-                                                            </div>
                                                         </div>
 
                                                     </form>

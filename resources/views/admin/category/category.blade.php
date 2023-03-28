@@ -40,13 +40,15 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$category->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$category->id}}"><i class="fe-edit"></i> Edit</a>
 
-                                            <form action="{{route('category.destroy', $category->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Are you sure to Delete This Category?')" class="dropdown-item btn btn-outline-danger text-center"><i class="fe-trash"></i> Delete</button>
-                                            </form>
+                                            @if($category->id != 1)
+                                                <form action="{{route('category.destroy', $category->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" onclick="return confirm('Are you sure to Delete This Category?')" class="dropdown-item btn btn-outline-danger text-center"><i class="fe-trash"></i> Delete</button>
+                                                </form>
+                                            @endif
 
                                         </div>
                                     </div>
@@ -65,22 +67,16 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="name">Category Name</label>
                                                                 <input class="form-control" type="text" value="{{$category->category_name}}" name="category_name" id="name" placeholder="Category Title">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="icon">Icon (100x100px)</label> <br>
                                                                 <img style="margin: 5px 0; height: 50px;" src="{{asset('storage')}}/{{$category->icon}}" alt="">
                                                                 <input class="form-control" name="icon" type="file" id="icon">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group account-btn text-center">
-                                                            <div class="col-12">
                                                                 <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Update Category</button>
-                                                            </div>
                                                         </div>
 
                                                     </form>

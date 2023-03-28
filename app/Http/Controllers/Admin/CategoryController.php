@@ -124,8 +124,26 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrfail($id);
+        $category = Category::where('id', $id)->with('products')->firstOrFail();
+
         // check korte hobe ei category te kono book ache kina ::: FUTURE;
+        if ($category->id == 1){
+            Toastr::error("Uncategorized can't be Delete!", "Sorry");
+            return back();
+        }
+        if (count($category->products) > 0) {
+            $product_array = [];
+            foreach ($category->products as $single_product) {
+                if (count($single_product->categories) > 1){
+                    continue;
+                }
+                $product_array[] = $single_product->id;
+            }
+            $uncategorized = Category::find(1);
+            $uncategorized->products()->syncWithoutDetaching($product_array);
+        }
+
+        $category->products()->detach();
         Storage::delete($category->icon);
         $category->delete();
         Toastr::success("Category Deleted Successfully", "Success");

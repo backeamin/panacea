@@ -7,6 +7,7 @@ use App\Models\Writer;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class WriterController extends Controller
 {
@@ -55,13 +56,19 @@ class WriterController extends Controller
 
         }
 
-       Writer::create([
+       $writer =Writer::create([
            'name' => $request->name,
            'profile_picture' => $profile_picture,
            'designation' => $request->designation,
            'description' => $request->description,
            'writer_speech' => $request->writer_speech,
        ]);
+        $slug = Str::slug($request->name);
+        if(Writer::where('slug',$slug)->exists()){
+            $slug .= "-" . $writer->id;
+        }
+        $writer->slug = $slug;
+        $writer->save();
 
         Toastr::success('Writer Created Successfully', 'Success');
         return back();
@@ -98,7 +105,6 @@ class WriterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $writer = Writer::findOrFail($id);
         $request->validate([
             'name' => 'required',
             'designation' => 'required'
@@ -106,6 +112,8 @@ class WriterController extends Controller
             'name.required' => 'Writer name required',
             'designation.required' => 'Designation required'
         ]);
+
+        $writer = Writer::findOrFail($id);
         $profile_picture = $writer->profile_picture;
         if($request->has('profile_picture')){
             $request->validate([
@@ -123,6 +131,14 @@ class WriterController extends Controller
             'description' => $request->description,
             'writer_speech' => $request->writer_speech,
         ]);
+        if($request->slug == null){
+            $slug = Str::slug($request->name);
+            if(Writer::where([['slug',$slug],['id', '!=', $writer->id]] )->exists()){
+                $slug .= "-" . $writer->id;
+            }
+            $writer->slug = $slug;
+            $writer->save();
+        }
 
         Toastr::success('Writer Updated Successfully', 'Success');
         return back();

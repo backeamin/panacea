@@ -45,7 +45,7 @@
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$review->id}}"><i class="fe-edit"> Edit</i></a>
+                                            <a class="dropdown-item btn btn-outline-primary text-center waves-effect waves-light" data-toggle="modal" data-target="#edit_{{$review->id}}"><i class="fe-edit"></i> Edit</a>
 
                                             <form action="{{route('review.destroy', $review->id)}}" method="post">
                                                 @csrf

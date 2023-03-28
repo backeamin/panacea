@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Option;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OptionController extends Controller
 {
@@ -14,7 +17,7 @@ class OptionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.option.option');
     }
 
     /**
@@ -35,8 +38,54 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $options = Option::all();
+
+        foreach ($options as $option){
+            $field_name = $option->title;
+            if($option->id == 4 || $option->id == 5){
+                $this->uploadImage($option, $request);
+                continue;
+            }
+            $option->update([
+                'value' => $request->$field_name
+            ]);
+        }
+
+        Toastr::success('Options Updated Successfully', 'Success');
+        return back();
     }
+// Image Upload Extra Function
+
+    public function uploadImage($option, $request)
+    {
+        if($option->title == 'logo'){
+            if($request->has('logo')){
+                $request->validate([
+                    'logo' => 'image|max:100'
+                ]);
+                Storage::delete($option->value);
+                $logo = $request->file('logo')->store('options');
+                $option->update([
+                    'value' => $logo
+                ]);
+            }
+        }
+
+
+        if($option->title == 'favicon'){
+            if($request->has('favicon')){
+                $request->validate([
+                    'favicon' => 'image|max:20'
+                ]);
+                Storage::delete($option->value);
+                $favicon = $request->file('favicon')->store('options');
+                $option->update([
+                    'value' => $favicon
+                ]);
+            }
+        }
+}
+
 
     /**
      * Display the specified resource.
