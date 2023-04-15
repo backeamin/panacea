@@ -68,33 +68,24 @@
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="shop_name">Shop Name</label>
                                                                 <input class="form-control" type="text" name="shop_name" id="shop_name" value="{{$book_shop->shop_name}}">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
-                                                                <label for="logo">Logo (Optional)</label>
-                                                                <input class="form-control" name="logo" type="file" id="icon">
-                                                            </div>
+                                                                <label for="logo">Logo (Optional)</label> <br>
+                                                            <img style="margin: 5px 0; height: 50px;" src="{{asset('storage')}}/{{$book_shop->logo}}" alt="">
+                                                                <input class="form-control" name="logo" type="file" id="logo">
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="address">Shop Address</label>
                                                                 <input class="form-control" type="text" name="address" id="address" value="{{$book_shop->address}}">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-12">
                                                                 <label for="phone_number">Shop Phone Number</label>
                                                                 <input class="form-control" type="text" name="phone_number" id="phone_number" value="{{$book_shop->phone_number}}">
-                                                            </div>
                                                         </div>
                                                         <div class="form-group account-btn text-center">
-                                                            <div class="col-12">
                                                                 <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Update Book Shop</button>
-                                                            </div>
                                                         </div>
 
                                                     </form>
@@ -126,33 +117,23 @@
                                 <form class="form-horizontal" action="{{route('book_shop.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="shop_name">Shop Name</label>
                                             <input class="form-control" type="text" name="shop_name" id="shop_name" placeholder="Shop Name">
-                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="logo">Logo (Optional)</label>
-                                            <input class="form-control" name="logo" type="file" id="icon">
-                                        </div>
+                                            <input class="form-control" name="logo" type="file" id="logo">
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="address">Address</label>
                                             <input class="form-control" type="text" name="address" id="address" placeholder="Address">
-                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-12">
                                             <label for="phone_number">Phone Number</label>
                                             <input class="form-control" type="text" name="phone_number" id="phone_number" placeholder="Phone Number">
-                                        </div>
                                     </div>
                                     <div class="form-group account-btn text-center">
-                                        <div class="col-12">
                                             <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Create Book Shop</button>
-                                        </div>
                                     </div>
 
                                 </form>

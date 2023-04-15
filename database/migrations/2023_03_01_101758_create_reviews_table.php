@@ -18,8 +18,10 @@ class CreateReviewsTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('date')->nullable();
-            $table->integer('ratings')->default(5);
+            $table->integer('ratings')->nullable();
             $table->text('review')->nullable();
+            $table->string('video_link')->nullable();
+            $table->integer('type')->default(1);
             $table->timestamps();
         });
     }

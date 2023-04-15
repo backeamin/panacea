@@ -41,9 +41,26 @@
                 </li>
                 <li>
                     <a href="{{route('book_shop.index')}}">
-                        <i class="fe-book"></i>
+                        <i class="fe-shopping-bag"></i>
                         <span> Book Shop </span>
                     </a>
+                </li>
+                <li>
+                    <a href="{{route('model_test.index')}}">
+                        <i class="fe-book-open"></i>
+                        <span> Model Test </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="dripicons-question"></i>
+                        <span> Questions </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('questions.index')}}">Question List</a></li>
+                        <li><a href="{{route('questions.create')}}">Add Question</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{route('review.index')}}">

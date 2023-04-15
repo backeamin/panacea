@@ -41,7 +41,7 @@ class ReviewController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'ratings' => 'numeric',
+            'ratings' => 'nullable|numeric',
         ],[
             'name.required' => 'Name is required',
             'ratings.numeric' => 'Ratings Must be Number'
@@ -61,6 +61,8 @@ class ReviewController extends Controller
             'date' => $request->date,
             'review' => $request->review,
             'ratings' => $request->ratings,
+            'video_link' => $request->video_link,
+            'type' => $request->type
 
         ]);
         Toastr::success('Review Created Successfully', 'Success');
@@ -120,6 +122,8 @@ class ReviewController extends Controller
             'date' => $request->date,
             'review' => $request->review,
             'ratings' => $request->ratings,
+            'video_link' => $request->video_link,
+            'type' => $request->type
 
         ]);
         Toastr::success('Review Updated Successfully', 'Success');

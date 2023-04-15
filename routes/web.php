@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\BookShopsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ModelTestController;
 use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\WriterController;
@@ -36,6 +38,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function (){
     Route::resource('/message', MessageController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/options', OptionController::class);
+    Route::resource('/model_test', ModelTestController::class);
+    Route::resource('/questions', QuestionController::class);
 });
 
 Auth::routes();

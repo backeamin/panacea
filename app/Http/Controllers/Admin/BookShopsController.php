@@ -108,8 +108,9 @@ class BookShopsController extends Controller
             'address.required' => 'Address required',
         ]);
         $book_shop = BookShop::findOrFail($id);
-        $logo = null;
+        $logo = $book_shop->logo;
         if($request->has('logo')){
+            Storage::delete($book_shop->logo);
             $request->validate([
                 'logo' => 'image|max:1000'
             ]);
@@ -136,7 +137,7 @@ class BookShopsController extends Controller
     public function destroy($id)
     {
         $book_shop = BookShop::findOrfail($id);
-        // check korte hobe ei category te kono book ache kina ::: FUTURE;
+        // check korte hobe ei Bookshop e kono book ache kina ::: FUTURE;
         Storage::delete($book_shop->logo);
         $book_shop->delete();
         Toastr::success("Shop Deleted Successfully", "Success");
